@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { makeStyles } from '@material-ui/core/styles';
 
-export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
+import CharacterCard from './CharacterCard.js';
 
-  useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  }, []);
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+}); 
+
+const CharacterList = props => {
+  const classes = useStyles();
+  const { charData } = props;
 
   return (
-    <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
+    <section className={`character-list ${classes.root}`}>
+      {charData.map((char, index) => {
+        return <CharacterCard char={char} key={index} />
+      })}
     </section>
   );
 }
+
+export default CharacterList;
