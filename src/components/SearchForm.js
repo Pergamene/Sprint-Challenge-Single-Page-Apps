@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import GetRequest from "../services/GetRequest";
 
 const SearchForm = props => {
-  const { setCharData } = props;
+  const { setCharData, setNumberOfChars } = props;
   const cleanSearch = ['', '', '', ''];
   const [searchParamsArr, setSearchParamsArr] = useState(cleanSearch); 
 
@@ -31,7 +31,7 @@ const SearchForm = props => {
   const submitForm = event => {
     event.preventDefault();
     const getSearchData = async () => {
-      const result = await GetRequest.getRequestSearch(searchParamsArr);
+      const result = await GetRequest.getRequestSearch(searchParamsArr, setNumberOfChars);
       setCharData(result);
       setSearchParamsArr(cleanSearch);
     };

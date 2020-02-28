@@ -3,14 +3,15 @@ import axios from 'axios';
 class GetRequest {
 
   // https://cors-anywhere.herokuapp.com/ in front to prevent errors
-  static async getRequest(pageNumber) {
+  static async getRequest(pageNumber, setNumberOfChars) {
     const url = new URL('https://rickandmortyapi.com/api/character/');
     url.searchParams.append('page', pageNumber);
     const response = await axios.get(url);
+    setNumberOfChars(response.data.info.count);
     return response.data.results;
   }
 
-  static async getRequestSearch(searchParamsArr) {
+  static async getRequestSearch(searchParamsArr, setNumberOfChars) {
     const url = new URL('https://rickandmortyapi.com/api/character/');
     if (searchParamsArr[0] !== '') {
       url.searchParams.append('name', searchParamsArr[0]);
@@ -25,6 +26,7 @@ class GetRequest {
       url.searchParams.append('gender', searchParamsArr[3]);
     }
     const response = await axios.get(url);
+    setNumberOfChars(response.data.info.count);
     return response.data.results;
   }
 }
