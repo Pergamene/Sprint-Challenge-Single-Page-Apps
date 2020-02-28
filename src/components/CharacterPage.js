@@ -16,8 +16,6 @@ const CharacterPage = () => {
     getCharData();
   }, [pageNumber]);
 
-  console.log('CHARDATA: ', charData);
-
   if (charData) {
     return (
       <div>
