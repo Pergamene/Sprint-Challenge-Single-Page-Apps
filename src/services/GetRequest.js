@@ -4,7 +4,7 @@ class GetRequest {
 
   // https://cors-anywhere.herokuapp.com/ in front to prevent errors
   static async getRequest(pageNumber, setNumberOfChars) {
-    const url = new URL('https://rickandmortyapi.com/api/character/');
+    const url = new URL('https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/');
     url.searchParams.append('page', pageNumber);
     const response = await axios.get(url);
     setNumberOfChars(response.data.info.count);
@@ -12,7 +12,7 @@ class GetRequest {
   }
 
   static async getRequestSearch(searchParamsArr, setNumberOfChars) {
-    const url = new URL('https://rickandmortyapi.com/api/character/');
+    const url = new URL('https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/');
     if (searchParamsArr[0] !== '') {
       url.searchParams.append('name', searchParamsArr[0]);
     }
