@@ -1,6 +1,17 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    textAlign: 'center',
+  },
+  numbers: {
+    cursor: 'pointer',
+  },
+});
 
 const Pages = props => {
+  const classes = useStyles();
   const { changePage, numberOfChars } = props;
 
   const makePageNumberArray = () => {
@@ -17,10 +28,10 @@ const Pages = props => {
   const pages = makePageNumberArray();
 
   return (
-    <div>
+    <div className={classes.root}>
       <span>Page: </span>
       {pages.map(pageNumber => {
-        return <span key={pageNumber} onClick={() => changePage(pageNumber)}>{pageNumber} </span>
+        return <span className={classes.numbers} key={pageNumber} onClick={() => changePage(pageNumber)}>{pageNumber} </span>
       })}
     </div>
   );
